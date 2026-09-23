@@ -55,6 +55,92 @@ a {
   top: 1rem;
 }
 
+.landing-splash {
+  align-items: center;
+  background: #07131f;
+  display: flex;
+  height: clamp(560px, 45vw, 860px);
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-splash::before {
+  background: url("../images/poster-rollout-montage.webp") center / cover no-repeat;
+  content: "";
+  filter: blur(18px);
+  inset: -2rem;
+  opacity: 0.7;
+  position: absolute;
+  transform: scale(1.04);
+}
+
+.landing-splash-video {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  pointer-events: none;
+  position: absolute;
+  user-select: none;
+  width: 100%;
+  z-index: 1;
+}
+
+.landing-splash-mask {
+  background:
+    linear-gradient(180deg, rgb(6 17 29 / 40%), rgb(6 17 29 / 66%)),
+    radial-gradient(circle at center, transparent 15%, rgb(4 13 23 / 24%) 78%);
+  inset: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+.landing-splash-content {
+  align-items: center;
+  color: #fff;
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: 88rem;
+  padding: 2rem 3rem;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 4px 24px rgb(0 0 0 / 55%);
+  width: 100%;
+  z-index: 3;
+}
+
+.splash-name {
+  font-size: clamp(4rem, 8.5vw, 8.75rem);
+  font-weight: 850;
+  letter-spacing: -0.065em;
+  line-height: 0.92;
+}
+
+.splash-description {
+  font-size: clamp(0.9rem, 1.35vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 1.2rem auto 0;
+  max-width: 30rem;
+  text-transform: uppercase;
+}
+
+.splash-brand-duomind .splash-description {
+  color: #72e3d7;
+}
+
+.splash-brand-robopoly .splash-description {
+  color: #ffc09f;
+}
+
+.splash-divider {
+  background: rgb(255 255 255 / 54%);
+  height: clamp(8rem, 15vw, 13rem);
+  width: 1px;
+}
+
 .project-hero {
   background:
     radial-gradient(circle at 10% 0%, rgb(17 137 129 / 13%), transparent 35rem),
@@ -124,46 +210,6 @@ a {
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow: var(--shadow);
-}
-
-.hero-gallery-heading {
-  margin: 0 auto 0.9rem;
-  max-width: 48rem;
-}
-
-.hero-gallery-heading h2 {
-  color: var(--navy-deep);
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.hero-gallery-heading p {
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.montage-figure {
-  background: #0d1720;
-  border: 1px solid rgb(24 58 91 / 24%);
-  border-radius: 18px;
-  box-shadow: 0 22px 56px rgb(24 58 91 / 16%);
-  margin: 0;
-  overflow: hidden;
-}
-
-.montage-figure video {
-  aspect-ratio: 20 / 9;
-  background: #0d1720;
-  width: 100%;
-}
-
-.montage-figure figcaption {
-  background: #101c27;
-  color: rgb(255 255 255 / 76%);
-  font-size: 0.85rem;
-  padding: 0.7rem 1rem 0.8rem;
-  text-align: center;
 }
 
 .section {
@@ -561,6 +607,41 @@ a {
     padding: 3rem 1rem 2.75rem;
   }
 
+  .landing-splash {
+    height: 76svh;
+    min-height: 560px;
+  }
+
+  .landing-splash-video {
+    object-fit: contain;
+  }
+
+  .landing-splash-mask {
+    background: linear-gradient(180deg, rgb(6 17 29 / 48%), rgb(6 17 29 / 76%));
+  }
+
+  .landing-splash-content {
+    gap: 1.4rem;
+    grid-template-columns: 1fr;
+    padding: 2rem 1.25rem;
+  }
+
+  .splash-name {
+    font-size: clamp(3.25rem, 18vw, 5.25rem);
+  }
+
+  .splash-description {
+    font-size: 0.76rem;
+    margin-top: 0.65rem;
+    max-width: 18rem;
+  }
+
+  .splash-divider {
+    height: 1px;
+    justify-self: center;
+    width: min(10rem, 55vw);
+  }
+
   .publication-title {
     font-size: clamp(2.1rem, 10.5vw, 2.7rem);
     overflow-wrap: normal;
@@ -584,15 +665,6 @@ a {
   .figure-shell {
     border-radius: 12px;
     padding: 0.65rem;
-  }
-
-  .montage-figure {
-    border-radius: 12px;
-  }
-
-  .montage-figure figcaption {
-    font-size: 0.78rem;
-    padding: 0.65rem 0.75rem;
   }
 
   .ablation-panel {

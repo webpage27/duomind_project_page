@@ -15,6 +15,25 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <section class="landing-splash" aria-label="DuoMind and RoboPoly introduction">
+    <video class="landing-splash-video" data-montage autoplay muted loop playsinline preload="metadata"
+           poster="./static/images/poster-rollout-montage.webp" tabindex="-1" aria-hidden="true">
+      <source src="./static/videos/duomind-rollout-montage.mp4" type="video/mp4">
+    </video>
+    <div class="landing-splash-mask" aria-hidden="true"></div>
+    <div class="landing-splash-content">
+      <div class="splash-brand splash-brand-duomind">
+        <p class="splash-name">DuoMind</p>
+        <p class="splash-description">Hierarchical Multi-Robot Coordination Framework</p>
+      </div>
+      <span class="splash-divider" aria-hidden="true"></span>
+      <div class="splash-brand splash-brand-robopoly">
+        <p class="splash-name">RoboPoly</p>
+        <p class="splash-description">Multi-Robot Benchmark</p>
+      </div>
+    </div>
+  </section>
+
   <header class="hero project-hero" id="top">
     <div class="hero-body">
       <div class="container is-widescreen">
@@ -31,22 +50,6 @@
           </p>
         </div>
 
-        <div class="hero-gallery-heading has-text-centered">
-          <h2>Coordination in Motion</h2>
-          <p>Fifteen synchronized rollout views spanning RoboPoly and RoboTwin.</p>
-        </div>
-
-        <figure class="montage-figure">
-          <video data-montage muted loop playsinline controls preload="metadata"
-                 poster="./static/images/poster-rollout-montage.webp"
-                 aria-label="A three-by-five montage of fifteen labeled DuoMind coordination rollouts">
-            <source src="./static/videos/duomind-rollout-montage.mp4" type="video/mp4">
-          </video>
-          <figcaption>
-            All fifteen tiles play simultaneously. Each corner label identifies the benchmark and task;
-            use full-screen playback when viewing on a small display.
-          </figcaption>
-        </figure>
       </div>
     </div>
   </header>
@@ -85,6 +88,7 @@
           <p>
             Each robot separates high-level multi-agent reasoning from low-level continuous control.
             The evaluated system uses Qwen3-VL-4B-Instruct as the orchestrator and π0.5 as the primary action model.
+            Robots coordinate by exchanging natural-language messages containing intention, subgoal, and belief.
           </p>
         </div>
         <figure class="figure-shell architecture-figure">
@@ -116,48 +120,14 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="communication">
-      <div class="container is-max-desktop">
-        <div class="section-heading">
-          <p class="section-kicker">Inter-agent information sharing</p>
-          <h2 class="title is-2">Semantic Communication</h2>
-          <p>
-            Natural language is both the bridge from high-level reasoning to low-level control and
-            the medium through which independently controlled robots share task-relevant context.
-          </p>
-        </div>
-        <div class="message-flow" aria-label="Implemented semantic message fields">
-          <article class="message-card">
-            <span class="message-label">01</span>
-            <h3>Intention</h3>
-            <p>The robot's next subtask, identical to the low-level instruction sent to its action model.</p>
-          </article>
-          <article class="message-card featured-message">
-            <span class="message-label">02</span>
-            <h3>Subgoal</h3>
-            <p>The observable task state expected after the current instruction has been completed.</p>
-          </article>
-          <article class="message-card">
-            <span class="message-label">03</span>
-            <h3>Belief</h3>
-            <p>Current task-relevant information observed or inferred by the robot.</p>
-          </article>
-        </div>
-        <p class="secondary-note">
-          The paper also describes uncertainty as an optional belief-confidence signal. It is not shown
-          as an implemented field here because the evaluated prompt in the current paper emits the three fields above.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="robopoly">
+    <section class="section section-soft" id="robopoly">
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Long-horizon benchmark</p>
           <h2 class="title is-2">RoboPoly</h2>
           <p>
-            RoboPoly contains seven tasks designed around explicit cooperation. Each Panda robot receives
-            the shared global view and its own wrist view, but not the peer's wrist view, and is controlled by a separate policy.
+            We introduce RoboPoly, a benchmark of seven challenging multi-robot tasks that require
+            long-horizon coordination under distributed control, with each robot acting independently from its available observations.
           </p>
         </div>
         <div class="task-video-grid" aria-label="Eight integrated RoboPoly task and video units">
@@ -197,7 +167,7 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="robotwin-rollouts">
+    <section class="section" id="robotwin-rollouts">
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Adapted distributed-control tasks</p>
@@ -223,7 +193,7 @@
       </div>
     </section>
 
-    <section class="section" id="robopoly-results">
+    <section class="section section-soft" id="robopoly-results">
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Quantitative evaluation</p>
@@ -245,7 +215,7 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="robotwin">
+    <section class="section" id="robotwin">
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Evaluation beyond RoboPoly</p>
@@ -267,7 +237,7 @@
       </div>
     </section>
 
-    <section class="section" id="ablations">
+    <section class="section section-soft" id="ablations">
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Experimental analysis</p>
