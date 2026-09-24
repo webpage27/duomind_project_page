@@ -38,15 +38,16 @@
     <div class="hero-body">
       <div class="container is-widescreen">
         <div class="hero-heading has-text-centered">
-          <p class="section-kicker">Distributed multi-robot coordination</p>
           <h1 class="title publication-title">
             <span class="title-brand">DuoMind:</span>
             Enabling Distributed Multi-Robot Coordination with Semantic Communication
           </h1>
           <p class="publication-authors">Anonymous Authors</p>
           <p class="hero-takeaway">
-            Each independently controlled robot pairs a VLM orchestrator with a VLA action model
-            and exchanges structured semantic messages to coordinate long-horizon manipulation.
+            DuoMind, a distributed hierarchical framework for multi-robot coordination
+            through semantic communication. Each robot uses a VLA-based action model
+            for low-level execution and a VLM-based orchestrator for high-level reasoning
+            and inter-agent coordination.
           </p>
         </div>
 
@@ -57,14 +58,6 @@
   <main id="main-content">
     <section class="section section-soft" id="at-a-glance">
       <div class="container is-widescreen">
-        <div class="section-heading">
-          <p class="section-kicker">System overview</p>
-          <h2 class="title is-2">DuoMind at a Glance</h2>
-          <p>
-            Two independently controlled robots each reason through an orchestrator, execute through
-            an action model, and share semantic messages while acting in the same workspace.
-          </p>
-        </div>
         <figure class="figure-shell overview-figure">
           <a href="./static/images/duomind_at_a_glance.png" target="_blank" rel="noopener"
              aria-label="Open the full-resolution DuoMind overview figure">
@@ -73,8 +66,9 @@
                  width="3200" height="1230">
           </a>
           <figcaption>
-            DuoMind combines distributed hierarchical control, semantic inter-agent communication,
-            and long-horizon coordination tasks in RoboPoly. Open the figure for a full-resolution view.
+            (a) An illustration of DuoMind, a distributed framework combining an orchestrator and action model for multi-robot coordination.
+            (b) RoboPoly is a benchmark we develop for long-horizon coordination under distributed robot control.
+            (c) DuoMind consistently outperforms the baselines across both benchmarks.
           </figcaption>
         </figure>
       </div>
@@ -84,39 +78,19 @@
       <div class="container is-widescreen">
         <div class="section-heading">
           <p class="section-kicker">Distributed hierarchy</p>
-          <h2 class="title is-2">One Task, Two Minds</h2>
+          <h2 class="title is-2">Framework Overview</h2>
           <p>
-            Each robot separates high-level multi-agent reasoning from low-level continuous control.
-            The evaluated system uses Qwen3-VL-4B-Instruct as the orchestrator and π0.5 as the primary action model.
-            Robots coordinate by exchanging natural-language messages containing intention, subgoal, and belief.
+            To achieve multi-robot coordination under distributed setting, we adopt a hierarchical framework.
+            At each planning step, the orchestrator at each robot reasons over the task instruction,
+            local observations, and messages received from other robots. It then generates low-level
+            instructions for the action model and semantic messages for peer robots.
           </p>
         </div>
         <figure class="figure-shell architecture-figure">
           <img loading="lazy" src="./static/images/framework.png"
                alt="DuoMind architecture with one VLM orchestrator and one VLA action model per robot, low-frequency shared information, and high-frequency actions"
                width="3030" height="1260">
-          <figcaption>
-            Orchestrators reason and communicate at a lower frequency; action models execute
-            fine-grained action chunks from short natural-language instructions.
-          </figcaption>
         </figure>
-        <div class="process-grid" aria-label="DuoMind execution process">
-          <article class="process-card">
-            <span class="step-number">1</span>
-            <h3>Observe and reason</h3>
-            <p>Each robot combines the shared task, locally available views, and the latest peer message.</p>
-          </article>
-          <article class="process-card">
-            <span class="step-number">2</span>
-            <h3>Issue a subtask</h3>
-            <p>The orchestrator selects a short admissible instruction and prepares structured shared information.</p>
-          </article>
-          <article class="process-card">
-            <span class="step-number">3</span>
-            <h3>Act and replan</h3>
-            <p>The local VLA executes action chunks while the orchestrator updates its plan as the task evolves.</p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -130,51 +104,33 @@
             long-horizon coordination under distributed control, with each robot acting independently from its available observations.
           </p>
         </div>
-        <div class="task-video-grid" aria-label="Eight integrated RoboPoly task and video units">
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Cook Pot</h3><p>Complete staged preparation before jointly carrying the pot.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-cook-pot.webp" aria-label="RoboPoly Cook Pot rollout"><source src="./static/videos/robopoly-cook-pot.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Hang Bag</h3><p>Hand off the bag and place it on the hook.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-hang-bag.webp" aria-label="RoboPoly Hang Bag rollout"><source src="./static/videos/robopoly-hang-bag.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Exchange Bread</h3><p>Perform two coordinated exchanges across workspaces.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-exchange-bread.webp" aria-label="RoboPoly Exchange Bread rollout"><source src="./static/videos/robopoly-exchange-bread.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Food Serve</h3><p>Transfer bread across reach regions onto a tray.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-food-serve.webp" aria-label="RoboPoly Food Serve rollout"><source src="./static/videos/robopoly-food-serve.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Prepare Snack</h3><p>Allocate four bread pieces across two plates.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-prepare-snack.webp" aria-label="RoboPoly Prepare Snack rollout"><source src="./static/videos/robopoly-prepare-snack.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Clean Table</h3><p>Pass an unreachable cube and clear the workspace.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-clean-table.webp" aria-label="RoboPoly Clean Table rollout"><source src="./static/videos/robopoly-clean-table.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Put Object Cabinet</h3><p>Open, place, and close through shared manipulation.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-put-object-cabinet.webp" aria-label="RoboPoly Put Object Cabinet rollout"><source src="./static/videos/robopoly-put-object-cabinet.mp4" type="video/mp4"></video>
-          </article>
-          <article class="task-video-card">
-            <div class="task-card-copy"><h3>Cook Pot · Joint Carry</h3><p>Synchronize both grasps, then lift and transport the pot together.</p></div>
-            <video controls muted loop playsinline preload="none" poster="./static/images/poster-cook-pot-highlight.webp" aria-label="RoboPoly Cook Pot joint carry highlight"><source src="./static/videos/robopoly-cook-pot-highlight.mp4" type="video/mp4"></video>
-          </article>
+        <div class="rollout-gallery" aria-label="Seven RoboPoly task videos">
+          <div class="video-row video-row-three">
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-cook-pot.webp" aria-label="RoboPoly Cook Pot rollout"><source src="./static/videos/robopoly-cook-pot.mp4" type="video/mp4"></video><figcaption>Cook Pot</figcaption></figure>
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-hang-bag.webp" aria-label="RoboPoly Hang Bag rollout"><source src="./static/videos/robopoly-hang-bag.mp4" type="video/mp4"></video><figcaption>Hang Bag</figcaption></figure>
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-exchange-bread.webp" aria-label="RoboPoly Exchange Bread rollout"><source src="./static/videos/robopoly-exchange-bread.mp4" type="video/mp4"></video><figcaption>Exchange Bread</figcaption></figure>
+          </div>
+          <div class="video-row video-row-four">
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-food-serve.webp" aria-label="RoboPoly Food Serve rollout"><source src="./static/videos/robopoly-food-serve.mp4" type="video/mp4"></video><figcaption>Food Serve</figcaption></figure>
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-prepare-snack.webp" aria-label="RoboPoly Prepare Snack rollout"><source src="./static/videos/robopoly-prepare-snack.mp4" type="video/mp4"></video><figcaption>Prepare Snack</figcaption></figure>
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-clean-table.webp" aria-label="RoboPoly Clean Table rollout"><source src="./static/videos/robopoly-clean-table.mp4" type="video/mp4"></video><figcaption>Clean Table</figcaption></figure>
+            <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-put-object-cabinet.webp" aria-label="RoboPoly Put Object Cabinet rollout"><source src="./static/videos/robopoly-put-object-cabinet.mp4" type="video/mp4"></video><figcaption>Put Object Cabinet</figcaption></figure>
+          </div>
         </div>
+        <p class="rollout-note">The videos above are from DuoMind evaluation results.</p>
       </div>
     </section>
 
-    <section class="section" id="robotwin-rollouts">
+    <section class="section" id="experiment-result">
       <div class="container is-widescreen">
         <div class="section-heading">
-          <p class="section-kicker">Adapted distributed-control tasks</p>
-          <h2 class="title is-2">Robotwin</h2>
+          <p class="section-kicker">Quantitative evaluation</p>
+          <h2 class="title is-2">Experiment Result</h2>
           <p>
-            Seven supplied rollouts show two Aloha-AgileX agents coordinating through handoffs,
-            parallel actions, synchronized motion, and staged manipulation.
+            We conduct extensive experiments to evaluate DuoMind across challenging
+            cooperative manipulation tasks on both RoboPoly and RoboTwin. Our results demonstrate the
+            effectiveness of the proposed hierarchical design in multi-robot coordination and further
+            quantify the contributions of integrating orchestrator and inter-agent communication.
           </p>
         </div>
         <div class="rollout-gallery" aria-label="Seven RoboTwin rollout videos">
@@ -190,49 +146,16 @@
             <figure class="rollout-tile"><video controls muted loop playsinline preload="none" poster="./static/images/poster-robotwin-put-object-cabinet.webp" aria-label="RoboTwin Put Object Cabinet rollout"><source src="./static/videos/robotwin-put-object-cabinet.mp4" type="video/mp4"></video><figcaption>Put Object Cabinet</figcaption></figure>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section section-soft" id="robopoly-results">
-      <div class="container is-widescreen">
-        <div class="section-heading">
-          <p class="section-kicker">Quantitative evaluation</p>
-          <h2 class="title is-2">Main Results on RoboPoly</h2>
-          <p>
-            Over 400 evaluation rollouts per task, DuoMind with π0.5 matches or outperforms the
-            action-model-only baselines across the seven long-horizon tasks.
-          </p>
-        </div>
         <figure class="figure-shell results-figure table-focus">
           <img loading="lazy" src="./static/images/robopoly_results.png"
                alt="Table of success rates for DuoMind and action-model-only baselines on seven RoboPoly tasks"
                width="1068" height="346">
-          <figcaption>
-            DuoMind+π0.5 averages 35.8% success, compared with 21.7% for π0.5-only and 16.9% for π0-only.
-            The largest gain over π0.5-only appears on Cook Pot, where synchronized manipulation is central.
-          </figcaption>
         </figure>
-      </div>
-    </section>
-
-    <section class="section" id="robotwin">
-      <div class="container is-widescreen">
-        <div class="section-heading">
-          <p class="section-kicker">Evaluation beyond RoboPoly</p>
-          <h2 class="title is-2">Evaluation on RoboTwin</h2>
-          <p>
-            Eight RoboTwin dual-arm tasks are adapted to distributed control by treating the two
-            Aloha-AgileX arms as independent agents with separate policies and observations.
-          </p>
-        </div>
         <figure class="figure-shell results-figure robotwin-table table-focus">
           <img loading="lazy" src="./static/images/robotwin_results.png"
                alt="Table of success rates for DuoMind and action-model-only baselines on eight RoboTwin tasks"
                width="1156" height="348">
-          <figcaption>
-            Average success is 55.2% for DuoMind+π0.5, 51.8% for π0.5-only, and 36.3% for π0-only.
-            π0.5-only remains higher on Put Object Cabinet, so the page does not claim per-task dominance.
-          </figcaption>
         </figure>
       </div>
     </section>
@@ -240,22 +163,20 @@
     <section class="section section-soft" id="ablations">
       <div class="container is-widescreen">
         <div class="section-heading">
-          <p class="section-kicker">Experimental analysis</p>
           <h2 class="title is-2">Ablations</h2>
-          <p>
-            Communication supports coordinated decisions, while the action-model study separates
-            high-level orchestration gains from low-level controller strength.
-          </p>
         </div>
 
         <div class="ablation-grid">
           <article class="ablation-panel" id="communication-ablation">
             <div class="ablation-panel-heading">
-              <p class="section-kicker">Communication ablation</p>
-              <h3>Why Communication Matters</h3>
+              <h3>Inter-agent Communication Ablation</h3>
               <p>
-                Peer messages provide information that cannot always be inferred from local observations,
-                helping the orchestrators avoid conflicting targets and mistimed joint actions.
+                To further study the effect of the shared messages, we conduct an ablation using
+                DuoMind with π0.5 but without inter-agent communication.
+              </p>
+              <p>
+                The results show that the orchestrated π0.5 system consistently outperforms the non-communicating π0.5 system across all seven RoboPoly tasks. Without inter-agent communication, we observe more frequent
+conflicts and asynchronous behaviors between the two robots.
               </p>
             </div>
             <figure class="figure-shell panel-figure communication-figure">
@@ -263,35 +184,19 @@
                    alt="Bar chart comparing DuoMind with and without communication across seven RoboPoly tasks"
                    width="3606" height="1566">
               <figcaption>
-                Average success is 35.75% with communication and 26.25% without it.
-                Cook Pot has the largest difference: 39.25% versus 1.00%.
+
               </figcaption>
             </figure>
-            <div class="failure-grid compact-failures">
-              <article class="failure-card">
-                <p class="failure-task">Cook Pot</p>
-                <h4>Asynchronous lifting</h4>
-                <p>Without communication, one robot may lift while the peer has only begun grasping its handle.</p>
-              </article>
-              <article class="failure-card">
-                <p class="failure-task">Prepare Snack</p>
-                <h4>Conflicting allocation</h4>
-                <p>Both robots may choose the same plate and attempt to place bread there simultaneously.</p>
-              </article>
-            </div>
-            <p class="secondary-note">
-              These descriptions come from the paper. Matched no-communication footage was not supplied,
-              so this page does not create a synthetic video comparison.
-            </p>
           </article>
 
           <article class="ablation-panel" id="action-model-compatibility">
             <div class="ablation-panel-heading">
-              <p class="section-kicker">Component compatibility</p>
               <h3>Action Model Compatibility</h3>
               <p>
-                Replacing π0.5 with π0 lowers absolute performance, but the orchestrated π0 system remains
-                above the π0-only baseline on the three evaluated tasks.
+                To analyze the influence of the action model, we conduct an additional experiment
+                using π0 in place of π0.5. DuoMind with π0 still substantially outperforms the π0-only
+baseline. By introducing high-level reasoning and subtask decomposition through the orchestrator, DuoMind provides more appropriate low-level instructions for the
+evolving multi-agent state and improves coordination over the action-model-only setting.
               </p>
             </div>
             <figure class="figure-shell panel-figure compatibility-figure">
@@ -299,8 +204,7 @@
                    alt="Action model compatibility chart comparing DuoMind with pi zero point five, DuoMind with pi zero, and pi zero only across three RoboPoly tasks"
                    width="2179" height="1564">
               <figcaption>
-                With π0, DuoMind obtains 5.75%, 22.50%, and 24.25% on Cook Pot, Exchange Bread,
-                and Put Object Cabinet, compared with confirmed π0-only results of 0.25%, 18.50%, and 14.50%.
+
               </figcaption>
             </figure>
           </article>

@@ -149,11 +149,11 @@ a {
 }
 
 .project-hero .hero-body {
-  padding: 2.75rem 1.5rem 3.5rem;
+  padding: 2.75rem 1.5rem 1.5rem;
 }
 
 .hero-heading {
-  margin: 0 auto 1.25rem;
+  margin: 0 auto;
   max-width: 80rem;
 }
 
@@ -184,7 +184,7 @@ a {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 4rem;
 }
 
 .hero-takeaway {
@@ -214,6 +214,10 @@ a {
 
 .section {
   padding: 5.25rem 1.5rem;
+}
+
+#at-a-glance {
+  padding-top: 1.5rem;
 }
 
 .section-soft {
@@ -374,6 +378,13 @@ a {
   margin-top: 2rem;
 }
 
+.rollout-note {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .video-row {
   display: grid;
   gap: 1rem;
@@ -462,9 +473,13 @@ a {
   margin-bottom: 0.65rem;
 }
 
-.ablation-panel-heading > p:last-child {
+.ablation-panel-heading > p {
   color: var(--muted);
   font-size: 0.96rem;
+}
+
+.ablation-panel-heading > p + p {
+  margin-top: 1rem;
 }
 
 .panel-figure {
@@ -525,6 +540,10 @@ a {
 
 .results-figure {
   max-width: 74rem;
+}
+
+#experiment-result .results-figure {
+  margin-top: 2rem;
 }
 
 .table-focus {
@@ -604,7 +623,7 @@ a {
   }
 
   .project-hero .hero-body {
-    padding: 3rem 1rem 2.75rem;
+    padding: 3rem 1rem 1.25rem;
   }
 
   .landing-splash {
